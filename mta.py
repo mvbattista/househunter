@@ -1,11 +1,14 @@
 import json
 import urllib2
 import pprint
+import requests
 
 def demo():
 	url = 'http://web.mta.info/developers/data/lirr/lirr_gtfs.json'
-	resp = urllib2.urlopen(url)
-	return json.loads(''.join(resp.readlines()))
+	resp = requests.get(url)
+	return resp.json()
+	#resp = urllib2.urlopen(url)
+	#return json.loads(''.join(resp.readlines()))
 	
 pp = pprint.PrettyPrinter(indent=4)
 print 'Starting urlopen'
@@ -18,7 +21,7 @@ print 'urlopen complete'
 
 f = open('output.kml', 'w')
 f.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
-	<kml xmlns=\"http://earth.google.com/kml/2.0\"> <Document>")
+	<kml xmlns=\"http://earth.google.com/kml/2.0\"> <Document>\n")
 
 for stop in raw_data['gtfs']['stops']:
 	print stop['stop']['stop_name']+' - '+stop['stop']['stop_lat']+','+stop['stop']['stop_lon']
