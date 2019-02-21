@@ -1,5 +1,5 @@
 import json
-import urllib2
+# import urllib2
 import pprint
 import requests
 
@@ -11,9 +11,9 @@ def demo():
 	#return json.loads(''.join(resp.readlines()))
 	
 pp = pprint.PrettyPrinter(indent=4)
-print 'Starting urlopen'
+print('Starting urlopen')
 raw_data = demo()
-print 'urlopen complete'
+print('urlopen complete')
 # pp.pprint(raw_data)
 # print( json.dumps(raw_data, sort_keys=True, indent=2) )
 # pp.pprint(raw_data['gtfs']['stops'])
@@ -24,7 +24,7 @@ f.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
 	<kml xmlns=\"http://earth.google.com/kml/2.0\"> <Document>\n")
 
 for stop in raw_data['gtfs']['stops']:
-	print stop['stop']['stop_name']+' - '+stop['stop']['stop_lat']+','+stop['stop']['stop_lon']
+	print(stop['stop']['stop_name']+' - '+stop['stop']['stop_lat']+','+stop['stop']['stop_lon'])
 	f.write("<Placemark>\n\
 <name>" + stop['stop']['stop_name'] +"</name>\n\
   <Point>\n\
